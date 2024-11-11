@@ -1,0 +1,33 @@
+$red: #FF0101;
+$white: #ffffff;
+$black: #000000;
+$grey: #FBFBFB;
+$darkGrey: #74798C;
+
+* {
+    font-family: "Roboto", sans-serif;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    box-sizing: border-box;
+    // overflow: auto;
+}
+
+body {
+    height: 100%;
+    color: $black;
+    font-weight: 500;
+    background: $white;
+    font-weight: 500;
+}
+
+li {
+    list-style-type: none;
+}
+
+.main {
+    color: $black;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+}

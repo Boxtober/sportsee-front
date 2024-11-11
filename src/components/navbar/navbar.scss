@@ -1,0 +1,44 @@
+@import "../../styles/index.scss";
+
+.navbar {
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: $black;
+    height: 91px;
+
+    .logoIcon {
+        width: 178px;
+        height: auto;
+    }
+
+    ul {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 2rem;
+        width: 100%;
+
+        a {
+            padding: 10px;
+
+            li {
+                color: $white;
+                transition: 0.2s;
+                cursor: pointer;
+                font-size: 24px;
+                font-weight: 500;
+
+                &:hover {
+                    color: $red;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

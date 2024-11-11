@@ -1,0 +1,17 @@
+@import "../../styles/index.scss";
+
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+
+    .user-section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 2.5rem 4rem;
+        width: 100%;
+    }
+}

@@ -1,0 +1,25 @@
+@import "../../styles/index.scss";
+
+.cards-link-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    align-items: center;
+}
+
+.cardslinks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: $white;
+    border-radius: 6px;
+}
+
+.cardslinks img {
+    max-width: 100%;
+    max-height: 100%;
+    padding: .5rem;
+}
