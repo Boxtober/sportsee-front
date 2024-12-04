@@ -1,0 +1,41 @@
+// .recharts-cartesian-axis-line {}
+
+#root>div>div>div.main-container>div.user-section>div.recharts-responsive-container>div>svg>g:nth-child(7)>line {
+    stroke: green;
+    color: green;
+
+    visibility: hidden;
+}
+
+
+.recharts-legend-item {
+    padding: 1rem;
+}
+
+.recharts-cartesian-axis-ticks {
+    padding-bottom: 8rem;
+}
+
+span,
+.recharts-legend-item-text {
+    color: #74798C;
+}
+
+#root>div>div>div.main-container>div.user-section>div.recharts-responsive-container>div>svg>g.recharts-cartesian-grid>g>line:nth-child(5) {
+
+    visibility: hidden;
+}
+
+.recharts-cartesian-axis-tick-line {
+    visibility: hidden;
+
+}
+
+.recharts-text .recharts-cartesian-axis-tick-value {
+    padding-top: 8rem;
+}
+
+.barChartContainer {
+    width: 80%;
+
+}

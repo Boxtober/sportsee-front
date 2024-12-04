@@ -1,8 +1,13 @@
 $red: #FF0101;
 $white: #ffffff;
 $black: #000000;
+$dark-grey: #282D30;
 $grey: #FBFBFB;
 $darkGrey: #74798C;
+
+.recharts-wrapper {
+    border-radius: 5px;
+}
 
 * {
     font-family: "Roboto", sans-serif;
@@ -23,6 +28,8 @@ body {
 
 li {
     list-style-type: none;
+
+    color: #0130ff;
 }
 
 .main {

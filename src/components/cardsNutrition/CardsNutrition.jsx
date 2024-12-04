@@ -1,44 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { getMockUserData, getMockUserActivity } from "../../mocks/UserProfile";
+import React from "react";
+import { Calorie, Protein, Carbohydrate, Lipid } from "../../assets/icons";
 import "./cardsNutrition.scss";
 
-import { Calorie, Protein, Carbohydrate, Lipid } from "../../assets/icons";
-
-export const Nutritions = () => {
-    const [userData, setUserData] = useState(null);
-    const [userActivity, setUserActivity] = useState(null);
-
-    useEffect(() => {
-        const mockUserData = getMockUserData();
-        const mockUserActivity = getMockUserActivity();
-
-        setUserData(mockUserData);
-        setUserActivity(mockUserActivity);
-    }, []);
-
-    if (!userData || !userActivity) {
-        return <div>Loading...</div>;
+export const Nutritions = ({ userData }) => {
+    if (!userData || !userData.keyData) {
+        return <p>...</p>;
     }
 
+    // datas extraites de userData
     const nutritions = [
         {
             label: "Calories",
-            value: userData.keyData.calorieCount,
+            value: userData.keyData.calorieCount ?? "indisponible", // absence de données
             icon: <Calorie />,
         },
         {
             label: "Proteins",
-            value: userData.keyData.proteinCount,
+            value: userData.keyData.proteinCount ?? "indisponible",
             icon: <Protein />,
         },
         {
             label: "Carbs",
-            value: userData.keyData.carbohydrateCount,
+            value: userData.keyData.carbohydrateCount ?? "indisponible",
             icon: <Carbohydrate />,
         },
         {
             label: "Lipids",
-            value: userData.keyData.lipidCount,
+            value: userData.keyData.lipidCount ?? "indisponible",
             icon: <Lipid />,
         },
     ];
@@ -57,6 +45,7 @@ export const Nutritions = () => {
     );
 };
 
+// CardsNutrition affiche chaque donnée nutritionnelle
 export const CardsNutrition = ({ label, value, icon }) => {
     const cardClass = label.toLowerCase();
     return (

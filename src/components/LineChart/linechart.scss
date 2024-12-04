@@ -1,0 +1,10 @@
+@import "../../styles/index.scss";
+
+.recharts-tooltip-label {
+    display: none;
+    color: #ffffffbf;
+}
+
+LineChart>line {
+    stroke: none;
+}

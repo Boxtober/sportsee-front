@@ -9,9 +9,16 @@
 
     .user-section {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         justify-content: space-between;
         padding: 2.5rem 4rem;
+        width: 100%;
+        gap: 3rem;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
         width: 100%;
     }
 }
