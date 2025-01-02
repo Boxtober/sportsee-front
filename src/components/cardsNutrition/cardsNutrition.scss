@@ -4,7 +4,7 @@
     gap: 2.5rem;
     display: flex;
     flex-direction: column;
-
+    padding: 3rem 6rem 3rem 0rem;
 
     .card-data {
         display: flex;
@@ -15,6 +15,7 @@
         width: 16rem;
         justify-content: flex-start;
         align-items: center;
+        border-radius: 5px;
 
         .card-data-content {
             display: flex;
@@ -28,6 +29,29 @@
             p {
                 font-size: 14px;
                 color: $darkGrey;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1024px) {
+
+    .card-data-container {
+        gap: .5rem;
+        padding: 1.5rem 1rem 1rem 0;
+
+        .card-data {
+            padding: 1rem;
+            width: 7rem;
+            display: flex;
+            flex-direction: column;
+
+            .card-data-content {
+                align-items: center;
+
+                h3 {
+                    font-size: 16px;
+                }
             }
         }
     }

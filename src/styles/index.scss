@@ -5,36 +5,35 @@ $dark-grey: #282D30;
 $grey: #FBFBFB;
 $darkGrey: #74798C;
 
-.recharts-wrapper {
-    border-radius: 5px;
-}
 
-* {
-    font-family: "Roboto", sans-serif;
-    padding: 0;
-    margin: 0;
-    text-decoration: none;
+*,
+*::before,
+*::after {
     box-sizing: border-box;
-    // overflow: auto;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+    text-decoration: none;
+    list-style: none;
 }
 
 body {
-    height: 100%;
     color: $black;
     font-weight: 500;
     background: $white;
     font-weight: 500;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
 }
 
-li {
-    list-style-type: none;
-
-    color: #0130ff;
+.recharts-wrapper {
+    border-radius: 5px;
 }
 
 .main {
-    color: $black;
     font-weight: 500;
     display: flex;
     flex-direction: column;
+    height: 100%;
 }

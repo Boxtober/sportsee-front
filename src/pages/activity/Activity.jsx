@@ -6,12 +6,11 @@ import "./activity.scss";
 import { getUserMainData, getUserActivity } from "../../services/apiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
 import PieChartComponent from "../../components/pieChart/PieChart";
 
 const Activity = () => {
-    const { id } = useParams(); // récup id depuis url
-    const userId = parseInt(id, 10); //formate en entier
+    const { id } = useParams();
+    const userId = parseInt(id, 10);
     const [data, setData] = useState({
         userMainData: null,
         userActivity: null,
@@ -33,6 +32,7 @@ const Activity = () => {
         };
         fetchActivityData();
     }, [userId]);
+
     return (
         <div className="main">
             <div>

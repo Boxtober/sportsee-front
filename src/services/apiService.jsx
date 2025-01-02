@@ -1,18 +1,17 @@
-// requetes de données mockées ET API
-
 import axios from "axios";
 import mockData from "../mocks/mocksData";
 
 const BASE_URL = "http://localhost:3000";
-const IS_MOCK = true;
+const IS_MOCK = false;
 
 export const getUserMainData = async (userId) => {
     if (IS_MOCK) {
         return mockData.USER_MAIN_DATA.find((user) => user.id === userId);
     }
-    console.log(userId);
-    const response = await axios.get(`${BASE_URL}/user/${userId}`);
-    return response.data;
+
+    const { data } = await axios.get(`${BASE_URL}/user/${userId}`);
+    //console.log("data :", data.data);
+    return data.data;
 };
 
 export const getUserActivity = async (userId) => {
@@ -21,8 +20,8 @@ export const getUserActivity = async (userId) => {
             (activity) => activity.userId === userId
         );
     }
-    const response = await axios.get(`${BASE_URL}/user/${userId}/activity`);
-    return response.data;
+    const { data } = await axios.get(`${BASE_URL}/user/${userId}/activity`);
+    return data.data;
 };
 
 export const getUserAverageSessions = async (userId) => {
@@ -31,11 +30,11 @@ export const getUserAverageSessions = async (userId) => {
             (session) => session.userId === userId
         );
     }
-    const response = await axios.get(
+    const { data } = await axios.get(
         `${BASE_URL}/user/${userId}/average-sessions`
     );
 
-    return response.data;
+    return data.data;
 };
 
 export const getUserPerformance = async (userId) => {
@@ -44,6 +43,6 @@ export const getUserPerformance = async (userId) => {
             (performance) => performance.userId === userId
         );
     }
-    const response = await axios.get(`${BASE_URL}/user/${userId}/performance`);
-    return response.data;
+    const { data } = await axios.get(`${BASE_URL}/user/${userId}/performance`);
+    return data.data;
 };

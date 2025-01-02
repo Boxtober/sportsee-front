@@ -16,32 +16,38 @@ import {
 } from "../../services/apiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Home = () => {
-    const { id } = useParams(); // récup id depuis url
-    const userId = parseInt(id, 10); //formate en entier
+    const { id } = useParams();
+    const userId = isNaN(parseInt(id, 10)) ? null : parseInt(id, 10); // valide et formate l'id en entier
+
     const [data, setData] = useState({
         userMainData: null,
         userActivity: null,
         userAverageSessions: null,
         userPerformance: null,
     });
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchAllData = async () => {
+            setError(null);
+
             try {
-                const userMainData = await getUserMainData(userId);
-                const userActivity = await getUserActivity(userId);
-                const userAverageSessions = await getUserAverageSessions(
-                    userId
-                );
-                const userPerformance = await getUserPerformance(userId);
-                console.log("ALL DATAS :", {
+                const results = await Promise.all([
+                    getUserMainData(userId),
+                    getUserActivity(userId),
+                    getUserAverageSessions(userId),
+                    getUserPerformance(userId),
+                ]);
+
+                const [
                     userMainData,
                     userActivity,
                     userAverageSessions,
                     userPerformance,
-                });
+                ] = results;
 
                 setData({
                     userMainData,
@@ -49,37 +55,56 @@ const Home = () => {
                     userAverageSessions,
                     userPerformance,
                 });
-            } catch (error) {
-                console.error("pas de datas :( ");
+            } catch (err) {
+                console.error("pas de datas :( ", err);
+                setError("pas de datas :(");
             }
         };
-        fetchAllData();
+        if (userId) {
+            fetchAllData();
+        } else {
+            setError("Aucun utilisateur");
+        }
     }, [userId]);
 
-    if (!userId) {
-        return <p>eh naaaaan !</p>;
-    }
-    return (
-        <div className="main">
-            <div>
+    if (error) {
+        return (
+            <div className="main">
                 <Navbar />
                 <div className="main-container">
                     <SideBar />
-                    <div className="user-section">
-                        <Banner userData={data.userMainData} />
-                        <BarChartComponent userData={data.userActivity} />
-                        <div className="row">
-                            <RadarChartComponent
-                                userData={data.userPerformance}
-                            />
-                            <LineChartComponent
-                                userData={data.userAverageSessions}
-                            />
-                            <PieChartComponent userData={data.userMainData} />
-                        </div>
+                    <div className="user-link-container">
+                        <div className="error-message">{error}</div>
+
+                        <Link to="/user/12" className="user-link">
+                            Karl
+                        </Link>
+                        <Link to="/user/18" className="user-link">
+                            Cecilia
+                        </Link>
                     </div>
-                    <Nutritions userData={data.userMainData} />
                 </div>
+            </div>
+        );
+    }
+
+    return (
+        <div className="main">
+            <Navbar />
+            <div className="main-container">
+                <SideBar />
+                <div className="user-section">
+                    <Banner userData={data.userMainData} />
+                    <BarChartComponent userData={data.userActivity} />
+                    <div className="row">
+                        <LineChartComponent
+                            userData={data.userAverageSessions}
+                        />
+                        <RadarChartComponent userData={data.userPerformance} />
+                        <PieChartComponent userData={data.userMainData} />
+                    </div>
+                </div>
+                <Nutritions userData={data.userMainData} />
             </div>
         </div>
     );

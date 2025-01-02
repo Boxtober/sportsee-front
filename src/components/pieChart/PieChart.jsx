@@ -1,14 +1,16 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import useResponsiveHeight from "../../utils/ResponsiveHeight";
 
 const COLORS = ["#FF0000", "#FBFBFB"]; // score et restant
 
 const PieChartComponent = ({ userData }) => {
+    const containerHeight = useResponsiveHeight();
     if (!userData) {
         return;
     }
 
-    // recupere "todayScore" ou "score"
+    // recup "todayScore" ou "score"
     const score = userData.todayScore || userData.score;
 
     // structure des données
@@ -18,9 +20,21 @@ const PieChartComponent = ({ userData }) => {
     ];
 
     return (
-        <ResponsiveContainer width="100%" height="100%">
+        <ResponsiveContainer
+            width="100%"
+            height={containerHeight}
+            focusable="false"
+            style={{
+                outline: "none",
+            }}
+            tabIndex={-1}
+        >
             <PieChart
+                className="custom-pie-chart"
+                tabIndex={-1} // empêche l'élément d'être focusable
+                focusable="false"
                 style={{
+                    outline: "none",
                     backgroundColor: "#FBFBFB",
                 }}
             >
@@ -35,6 +49,9 @@ const PieChartComponent = ({ userData }) => {
                 </text>
 
                 <Pie
+                    style={{
+                        outline: "none",
+                    }}
                     data={[{ value: 1 }]}
                     cx="50%"
                     cy="50%"
@@ -45,6 +62,9 @@ const PieChartComponent = ({ userData }) => {
                     isAnimationActive={false}
                 />
                 <Pie
+                    style={{
+                        outline: "none",
+                    }}
                     data={data}
                     cx="50%"
                     cy="50%"
@@ -60,6 +80,7 @@ const PieChartComponent = ({ userData }) => {
                         <Cell
                             key={`cell-${index}`}
                             fill={COLORS[index % COLORS.length]}
+                            stroke="#FBFBFB"
                         />
                     ))}
                 </Pie>
@@ -73,6 +94,7 @@ const PieChartComponent = ({ userData }) => {
                 >
                     {`${(score * 100).toFixed(0)}%`}
                 </text>
+
                 <text
                     x="50%"
                     y="55%"
@@ -81,10 +103,15 @@ const PieChartComponent = ({ userData }) => {
                     style={{
                         fontSize: "16px",
                         fontWeight: "500",
-                        fill: "#74798C ",
+                        fill: "#74798C",
                     }}
                 >
-                    de votre objectif
+                    <tspan x="50%" dy="0">
+                        de votre
+                    </tspan>
+                    <tspan x="50%" dy="1.2em">
+                        objectif
+                    </tspan>
                 </text>
             </PieChart>
         </ResponsiveContainer>

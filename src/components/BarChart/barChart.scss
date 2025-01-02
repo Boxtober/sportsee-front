@@ -1,24 +1,24 @@
-// .recharts-cartesian-axis-line {}
-
 #root>div>div>div.main-container>div.user-section>div.recharts-responsive-container>div>svg>g:nth-child(7)>line {
     stroke: green;
     color: green;
-
     visibility: hidden;
 }
 
-
-.recharts-legend-item {
-    padding: 1rem;
+li {
+    display: flex;
+    flex-direction: row;
+    gap: 5rem;
+    padding-right: 2rem;
 }
 
-.recharts-cartesian-axis-ticks {
-    padding-bottom: 8rem;
+#root>div>div>div.main-container>div.user-section>div.recharts-responsive-container.barChartContainer>div>svg>g.recharts-layer.recharts-cartesian-axis.recharts-xAxis.xAxis>g>g>text>tspan {
+    color: #9B9EAC;
+    font-size: 14px;
 }
 
-span,
-.recharts-legend-item-text {
-    color: #74798C;
+.recharts-tooltip-cursor {
+
+    opacity: 0.5;
 }
 
 #root>div>div>div.main-container>div.user-section>div.recharts-responsive-container>div>svg>g.recharts-cartesian-grid>g>line:nth-child(5) {
@@ -28,7 +28,6 @@ span,
 
 .recharts-cartesian-axis-tick-line {
     visibility: hidden;
-
 }
 
 .recharts-text .recharts-cartesian-axis-tick-value {
@@ -37,5 +36,25 @@ span,
 
 .barChartContainer {
     width: 80%;
+}
 
+@media screen and (max-width: 1024px) {
+    li {
+        gap: 1rem;
+        padding-right: .5rem;
+        margin-right: 0;
+    }
+
+    .recharts-responsive-container .barChartContainer {
+        height: 40%;
+    }
+
+    .recharts-responsive-container {
+
+        .recharts-wrapper {
+            .recharts-legend-wrapper {
+                padding-bottom: 0;
+            }
+        }
+    }
 }

@@ -11,22 +11,30 @@ export const Nutritions = ({ userData }) => {
     const nutritions = [
         {
             label: "Calories",
-            value: userData.keyData.calorieCount ?? "indisponible", // absence de données
+            value: userData.keyData.calorieCount
+                ? `${userData.keyData.calorieCount}kCal`
+                : "indisponible",
             icon: <Calorie />,
         },
         {
-            label: "Proteins",
-            value: userData.keyData.proteinCount ?? "indisponible",
+            label: "Proteines",
+            value: userData.keyData.proteinCount
+                ? `${userData.keyData.proteinCount}g`
+                : "indisponible",
             icon: <Protein />,
         },
         {
-            label: "Carbs",
-            value: userData.keyData.carbohydrateCount ?? "indisponible",
+            label: "Glucides",
+            value: userData.keyData.carbohydrateCount
+                ? `${userData.keyData.carbohydrateCount}g`
+                : "indisponible",
             icon: <Carbohydrate />,
         },
         {
-            label: "Lipids",
-            value: userData.keyData.lipidCount ?? "indisponible",
+            label: "Lipides",
+            value: userData.keyData.lipidCount
+                ? `${userData.keyData.lipidCount}g`
+                : "indisponible",
             icon: <Lipid />,
         },
     ];
@@ -45,7 +53,6 @@ export const Nutritions = ({ userData }) => {
     );
 };
 
-// CardsNutrition affiche chaque donnée nutritionnelle
 export const CardsNutrition = ({ label, value, icon }) => {
     const cardClass = label.toLowerCase();
     return (

@@ -1,3 +1,4 @@
+//changer données mockés pour
 export const USER_MAIN_DATA = [
     {
         id: 12,
@@ -17,7 +18,7 @@ export const USER_MAIN_DATA = [
     {
         id: 18,
         userInfos: {
-            firstName: "Cecilia",
+            firstName: "Ceciliaoo",
             lastName: "Ratorez",
             age: 34,
         },

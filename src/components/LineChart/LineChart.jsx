@@ -1,100 +1,96 @@
 import React, { useState } from "react";
 import {
-    LineChart,
+    ComposedChart,
     Line,
     XAxis,
-    // CartesianGrid,
+    CartesianGrid,
     Tooltip,
-    ResponsiveContainer,
     Rectangle,
+    ResponsiveContainer,
 } from "recharts";
+import useResponsiveHeight from "../../utils/ResponsiveHeight";
 
-import "./linechart.scss";
+const CustomCursor = (props) => {
+    const { points, width, height } = props;
+    const { x, y } = points[0];
+    // const { x1, y1 } = points[1];
+    // console.log(props);
+    return (
+        <Rectangle
+            fill="#000000"
+            stroke="#000000"
+            opacity={0.0975}
+            x={x}
+            y={y}
+            width={width}
+            height={height}
+        />
+    );
+};
 
 const LineChartComponent = ({ userData }) => {
+    const containerHeight = useResponsiveHeight();
     const [activeIndex, setActiveIndex] = useState(null);
-
     if (!userData || !userData.sessions) {
         return;
     }
-
     const data = userData.sessions.map((session) => ({
         date: ["L", "M", "M", "J", "V", "S", "D"][session.day - 1],
         sessionLength: session.sessionLength,
     }));
-
-    const CustomCursor = (props) => {
-        const { points, width, height } = props;
-        const { x, y } = points[0];
-        return (
-            <Rectangle
-                fill="#000000"
-                stroke="#000000"
-                opacity={0.0975}
-                x={x}
-                y={y}
-                width={width}
-                height={height}
-            />
-        );
-    };
-
     return (
-        <ResponsiveContainer width="100%" height={300}>
-            <LineChart
-                stroke="none"
+        <ResponsiveContainer width="100%" height={containerHeight}>
+            <ComposedChart
+                width={800}
+                height={800}
                 data={data}
-                // padding={{
-                //     top: 0,
-                //     right: 10,
-                //     left: 10,
-                //     bottom: 10,
-                // }}
-                // margin={{
-                //     top: 10,
-                //     right: 0,
-                //     left: -50,
-                //     bottom: 0,
-                // }}
+                margin={{
+                    top: 0,
+                    right: 20,
+                    bottom: 20,
+                    left: 20,
+                }}
                 style={{
                     backgroundColor: "#FF0101",
+                    color: "white",
                 }}
                 onMouseMove={(e) => {
                     if (e && e.activeTooltipIndex !== undefined) {
                         setActiveIndex(e.activeTooltipIndex);
                     }
                 }}
-                onMouseLeave={() => setActiveIndex(null)}
             >
-                {/* <CartesianGrid strokeDasharray="3 3" /> */}
-                <XAxis padding={{ left: 20, right: 20 }} dataKey="date" />
+                <CartesianGrid stroke="none" />
+                <XAxis
+                    dataKey="date"
+                    padding={{ left: 0, right: 0, top: 0 }}
+                    style={{
+                        stroke: "none",
+                    }}
+                    tick={{ fill: "#FFFFFF", opacity: 0.5 }} // opacité des dates
+                />
                 <Tooltip
-                    //dataKey="sessionLength"
-                    //cursor={false} // suppr ligne Y ??
-                    cursor={<CustomCursor />}
+                    cursor={<CustomCursor height={300} />}
                     contentStyle={{
                         backgroundColor: "#fff",
                         color: "#000",
                         border: "none",
                     }}
                     labelStyle={{
-                        fontWeight: "bold",
-                        color: "#000",
+                        display: "none", // masque le label contenant la date
                     }}
                     itemStyle={{
                         color: "#000",
                     }}
-                    // formatter={(value) => {
-                    //     return `${value} min`;
-                    // }}
-
-                    // formatter={(value) => ` ${value} min`}
+                    formatter={(value) => [`${value} min`]}
                 />
-                <legend></legend>
+                <legend formatter={(value) => ` ${value} min`} />
                 <Line
-                    type="monotone"
+                    type="natural"
+                    stroke="#FFFFFF"
+                    strokeWidth={2}
+                    data={data}
                     dataKey="sessionLength"
-                    stroke="#fff"
                     dot={(props) => {
                         const { cx, cy, index } = props;
                         return (
@@ -114,13 +110,16 @@ const LineChartComponent = ({ userData }) => {
                         );
                     }}
                 />
-                {/* <XAxis tick={{ fill: "#FFFFFF", opacity: "0.5" }} /> */}
                 <text x={50} y={50} fill="#fff" opacity="0.504" fontSize={16}>
-                    Durée moyenne des sessions
+                    <tspan x={50} dy="0">
+                        Durée moyenne des
+                    </tspan>
+                    <tspan x={50} dy="20">
+                        sessions
+                    </tspan>
                 </text>
-            </LineChart>
+            </ComposedChart>
         </ResponsiveContainer>
     );
 };
-
 export default LineChartComponent;
