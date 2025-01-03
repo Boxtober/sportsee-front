@@ -34,10 +34,22 @@ const LineChartComponent = ({ userData }) => {
     if (!userData || !userData.sessions) {
         return;
     }
-    const data = userData.sessions.map((session) => ({
+    const realData = userData.sessions.map((session) => ({
         date: ["L", "M", "M", "J", "V", "S", "D"][session.day - 1],
         sessionLength: session.sessionLength,
     }));
+
+    const fakeDataStart = {
+        date: "",
+        sessionLength: realData[0].sessionLength, // value de 1er session
+    };
+    const fakeDataEnd = {
+        date: "",
+        sessionLength: realData[realData.length - 1].sessionLength, // value de dernière session
+    };
+
+    const data = [fakeDataStart, ...realData, fakeDataEnd];
+
     return (
         <ResponsiveContainer width="100%" height={containerHeight}>
             <ComposedChart
@@ -46,9 +58,9 @@ const LineChartComponent = ({ userData }) => {
                 data={data}
                 margin={{
                     top: 0,
-                    right: 20,
+                    right: -20,
                     bottom: 20,
-                    left: 20,
+                    left: -20,
                 }}
                 style={{
                     backgroundColor: "#FF0101",

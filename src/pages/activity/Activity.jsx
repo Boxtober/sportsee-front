@@ -6,7 +6,7 @@ import "./activity.scss";
 import { getUserMainData, getUserActivity } from "../../services/apiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import PieChartComponent from "../../components/pieChart/PieChart";
+import BarChartComponent from "../../components/BarChart/BarChart";
 
 const Activity = () => {
     const { id } = useParams();
@@ -41,9 +41,7 @@ const Activity = () => {
                     <SideBar />
                     <div className="user-section">
                         <Banner userData={data.userMainData} />
-                        <PieChartComponent userData={data.userMainData} />
-
-                        <div className="row"></div>
+                        <BarChartComponent userData={data.userActivity} />
                     </div>
                     <Nutritions userData={data.userMainData} />
                 </div>

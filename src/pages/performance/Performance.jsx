@@ -1,39 +1,34 @@
 import Navbar from "../../components/navbar/Navbar";
 import SideBar from "../../components/sidebar/Sidebar";
 import Banner from "../../components/banner/Banner";
-import {
-    getUserMainData,
-    getUserAverageSessions,
-} from "../../services/apiService";
+import { getUserMainData, getUserPerformance } from "../../services/apiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import LineChartComponent from "../../components/LineChart/LineChart";
+import RadarChartComponent from "../../components/radarChart/RadarChart";
 
-const AverageSessions = () => {
+const Performance = () => {
     const { id } = useParams();
     const userId = parseInt(id, 10);
     const [data, setData] = useState({
         userMainData: null,
-        userAverageSessions: null,
+        userPerformance: null,
     });
 
     useEffect(() => {
-        const fetchAverageSessionsData = async () => {
+        const fetchPerformanceData = async () => {
             try {
                 const userMainData = await getUserMainData(userId);
-                const userAverageSessions = await getUserAverageSessions(
-                    userId
-                );
+                const userPerformance = await getUserPerformance(userId);
 
                 setData({
                     userMainData,
-                    userAverageSessions,
+                    userPerformance,
                 });
             } catch (error) {
                 console.error("pas de datas :( ");
             }
         };
-        fetchAverageSessionsData();
+        fetchPerformanceData();
     }, [userId]);
 
     return (
@@ -44,10 +39,7 @@ const AverageSessions = () => {
                     <SideBar />
                     <div className="user-section">
                         <Banner userData={data.userMainData} />
-
-                        <LineChartComponent
-                            userData={data.userAverageSessions}
-                        />
+                        <RadarChartComponent userData={data.userPerformance} />
                     </div>
                 </div>
             </div>
@@ -55,4 +47,4 @@ const AverageSessions = () => {
     );
 };
 
-export default AverageSessions;
+export default Performance;
