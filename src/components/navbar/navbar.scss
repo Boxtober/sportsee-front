@@ -1,65 +1,65 @@
 @import "../../styles/index.scss";
 
 .navbar {
-    padding: 0 2rem;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background: $black;
+  height: 91px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  .logoIcon {
+    width: 178px;
+    height: auto;
+  }
+
+  ul {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
+    display: flex;
     justify-content: space-between;
-    background: $black;
-    height: 91px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    align-items: center;
+    padding-left: 8rem;
+    width: 100%;
 
-    .logoIcon {
-        width: 178px;
-        height: auto;
-    }
+    a {
+      padding: 10px;
 
-    ul {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding-left: 8rem;
-        width: 100%;
+      li {
+        color: $white;
+        transition: 0.2s;
+        cursor: pointer;
+        font-size: 24px;
+        font-weight: 500;
 
-        a {
-            padding: 10px;
-
-            li {
-                color: $white;
-                transition: 0.2s;
-                cursor: pointer;
-                font-size: 24px;
-                font-weight: 500;
-
-                &:hover {
-                    color: $red;
-                    font-weight: 700;
-                }
-            }
+        &:hover {
+          color: $red;
+          font-weight: 700;
         }
+      }
     }
+  }
 }
 
 @media screen and (max-width: 1024px) {
-    .navbar {
-        height: 72px;
+  .navbar {
+    height: 72px;
 
-        .logoIcon {
-            width: 138px;
-        }
-
-        ul {
-            padding-left: 5rem;
-
-            a {
-                li {
-                    font-size: 18px;
-                }
-            }
-        }
+    .logoIcon {
+      width: 138px;
     }
+
+    ul {
+      padding-left: 5rem;
+
+      a {
+        li {
+          font-size: 18px;
+        }
+      }
+    }
+  }
 }

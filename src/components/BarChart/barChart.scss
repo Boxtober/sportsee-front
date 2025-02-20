@@ -1,60 +1,88 @@
-#root>div>div>div.main-container>div.user-section>div.recharts-responsive-container>div>svg>g:nth-child(7)>line {
-    stroke: green;
-    color: green;
-    visibility: hidden;
+#root
+  > div
+  > div
+  > div.main-container
+  > div.user-section
+  > div.recharts-responsive-container
+  > div
+  > svg
+  > g:nth-child(7)
+  > line {
+  stroke: green;
+  color: green;
+  visibility: hidden;
 }
 
 li {
-    display: flex;
-    flex-direction: row;
-    gap: 5rem;
-    padding-right: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 5rem;
+  padding-right: 2rem;
 }
 
-#root>div>div>div.main-container>div.user-section>div.recharts-responsive-container.barChartContainer>div>svg>g.recharts-layer.recharts-cartesian-axis.recharts-xAxis.xAxis>g>g>text>tspan {
-    color: #9B9EAC;
-    font-size: 14px;
+#root
+  > div
+  > div
+  > div.main-container
+  > div.user-section
+  > div.recharts-responsive-container.barChartContainer
+  > div
+  > svg
+  > g.recharts-layer.recharts-cartesian-axis.recharts-xAxis.xAxis
+  > g
+  > g
+  > text
+  > tspan {
+  color: #9b9eac;
+  font-size: 14px;
 }
 
 .recharts-tooltip-cursor {
-
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
-#root>div>div>div.main-container>div.user-section>div.recharts-responsive-container>div>svg>g.recharts-cartesian-grid>g>line:nth-child(5) {
-
-    visibility: hidden;
+#root
+  > div
+  > div
+  > div.main-container
+  > div.user-section
+  > div.recharts-responsive-container
+  > div
+  > svg
+  > g.recharts-cartesian-grid
+  > g
+  > line:nth-child(5) {
+  visibility: hidden;
 }
 
 .recharts-cartesian-axis-tick-line {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .recharts-text .recharts-cartesian-axis-tick-value {
-    padding-top: 8rem;
+  padding-top: 8rem;
 }
 
 .barChartContainer {
-    width: 80%;
+  width: 80%;
 }
 
 @media screen and (max-width: 1024px) {
-    li {
-        gap: 1rem;
-        padding-right: .5rem;
-        margin-right: 0;
-    }
+  li {
+    gap: 1rem;
+    padding-right: 0.5rem;
+    margin-right: 0;
+  }
 
-    .recharts-responsive-container .barChartContainer {
-        height: 40%;
-    }
+  .recharts-responsive-container .barChartContainer {
+    height: 40%;
+  }
 
-    .recharts-responsive-container {
-
-        .recharts-wrapper {
-            .recharts-legend-wrapper {
-                padding-bottom: 0;
-            }
-        }
+  .recharts-responsive-container {
+    .recharts-wrapper {
+      .recharts-legend-wrapper {
+        padding-bottom: 0;
+      }
     }
+  }
 }

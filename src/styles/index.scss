@@ -1,39 +1,38 @@
-$red: #FF0101;
+$red: #ff0101;
 $white: #ffffff;
 $black: #000000;
-$dark-grey: #282D30;
-$grey: #FBFBFB;
-$darkGrey: #74798C;
-
+$dark-grey: #282d30;
+$grey: #fbfbfb;
+$darkGrey: #74798c;
 
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: "Roboto", sans-serif;
-    text-decoration: none;
-    list-style: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+  text-decoration: none;
+  list-style: none;
 }
 
 body {
-    color: $black;
-    font-weight: 500;
-    background: $white;
-    font-weight: 500;
-    width: 100%;
-    height: 100%;
-    min-height: 100vh;
+  color: $black;
+  font-weight: 500;
+  background: $white;
+  font-weight: 500;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
 }
 
 .recharts-wrapper {
-    border-radius: 5px;
+  border-radius: 5px;
 }
 
 .main {
-    font-weight: 500;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+  font-weight: 500;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }

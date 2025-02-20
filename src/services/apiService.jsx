@@ -10,7 +10,7 @@ export const getUserMainData = async (userId) => {
     }
 
     const { data } = await axios.get(`${BASE_URL}/user/${userId}`);
-    //console.log("data :", data.data);
+
     return data.data;
 };
 
