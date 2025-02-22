@@ -7,32 +7,32 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import useResponsiveHeight from "../../utils/ResponsiveHeight";
-
+import { performanceDataFormatter } from "../../services/dataFormatter";
 const RadarChartComponent = ({ userData }) => {
   const containerHeight = useResponsiveHeight();
   const [performanceData, setPerformanceData] = useState([]);
 
-  const translations = {
-    1: "Cardio",
-    2: "Énergie",
-    3: "Endurance",
-    4: "Force",
-    5: "Vitesse",
-    6: "Intensité",
-  };
+  // const translations = {
+  //   1: "Cardio",
+  //   2: "Énergie",
+  //   3: "Endurance",
+  //   4: "Force",
+  //   5: "Vitesse",
+  //   6: "Intensité",
+  // };
 
   useEffect(() => {
     if (userData) {
-      const { data } = userData;
+      // const { data } = userData;
 
-      const formattedData = data
-        .map((item) => ({
-          subject: translations[item.kind] || "Inconnu",
-          A: item.value, // valeur de la performance
-        }))
-        .reverse(); // inverse l'ordre
-
-      setPerformanceData(formattedData);
+      // const formattedData = data
+      //   .map((item) => ({
+      //     subject: translations[item.kind] || "Inconnu",
+      //     A: item.value, // valeur de la performance
+      //   }))
+      //   .reverse(); // inverse l'ordre
+      setPerformanceData(performanceDataFormatter(userData));
+      // setPerformanceData(formattedData);
     }
   }, [userData]);
 

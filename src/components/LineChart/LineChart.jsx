@@ -9,6 +9,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import useResponsiveHeight from "../../utils/ResponsiveHeight";
+import { dayDataFormatter } from "../../services/dataFormatter";
 
 const CustomCursor = (props) => {
   const { points, width, height } = props;
@@ -32,21 +33,12 @@ const LineChartComponent = ({ userData }) => {
   if (!userData || !userData.sessions) {
     return;
   }
-  const realData = userData.sessions.map((session) => ({
-    date: ["L", "M", "M", "J", "V", "S", "D"][session.day - 1],
-    sessionLength: session.sessionLength,
-  }));
-
-  const fakeDataStart = {
-    date: "",
-    sessionLength: realData[0].sessionLength, // value de 1er session
-  };
-  const fakeDataEnd = {
-    date: "",
-    sessionLength: realData[realData.length - 1].sessionLength, // value de dernière session
-  };
-
-  const data = [fakeDataStart, ...realData, fakeDataEnd];
+  const realData = dayDataFormatter(userData.sessions);
+  const data = [
+    { date: "", sessionLength: realData[0].sessionLength },
+    ...realData,
+    { date: "", sessionLength: realData[realData.length - 1].sessionLength }, //APRES la dernière session avec value de dernière session
+  ]; // creer un nouvel ensemble de données avec fausse sessions et vraie sessions
 
   return (
     <ResponsiveContainer width="100%" height={containerHeight}>

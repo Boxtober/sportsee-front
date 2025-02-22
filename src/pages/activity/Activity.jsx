@@ -7,6 +7,7 @@ import { getUserMainData, getUserActivity } from "../../services/apiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BarChartComponent from "../../components/BarChart/BarChart";
+import Error from "../error/Error";
 
 const Activity = () => {
   const { id } = useParams();
@@ -15,9 +16,11 @@ const Activity = () => {
     userMainData: null,
     userActivity: null,
   });
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchActivityData = async () => {
+      setError(null);
       try {
         const userMainData = await getUserMainData(userId);
         const userActivity = await getUserActivity(userId);
@@ -33,6 +36,9 @@ const Activity = () => {
     fetchActivityData();
   }, [userId]);
 
+  if (error || !data.userMainData) {
+    return <Error />;
+  }
   return (
     <div className="main">
       <div>

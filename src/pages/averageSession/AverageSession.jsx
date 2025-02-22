@@ -1,6 +1,8 @@
 import Navbar from "../../components/navbar/Navbar";
 import SideBar from "../../components/sidebar/Sidebar";
 import Banner from "../../components/banner/Banner";
+import Error from "../error/Error";
+
 import {
   getUserMainData,
   getUserAverageSessions,
@@ -16,9 +18,11 @@ const AverageSessions = () => {
     userMainData: null,
     userAverageSessions: null,
   });
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchAverageSessionsData = async () => {
+      setError(null);
       try {
         const userMainData = await getUserMainData(userId);
         const userAverageSessions = await getUserAverageSessions(userId);
@@ -29,10 +33,14 @@ const AverageSessions = () => {
         });
       } catch (error) {
         console.error("pas de datas :( ");
+        setError("pas de datas :(");
       }
     };
     fetchAverageSessionsData();
   }, [userId]);
+  if (error || !data.userMainData) {
+    return <Error />;
+  }
 
   return (
     <div className="main">

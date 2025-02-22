@@ -12,10 +12,9 @@ import {
   getUserAverageSessions,
   getUserPerformance,
 } from "../../services/apiService";
-
+import Error from "../error/Error";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "./home.scss";
 
 const Home = () => {
@@ -66,25 +65,8 @@ const Home = () => {
     }
   }, [userId]);
 
-  if (error) {
-    return (
-      <div className="main">
-        <Navbar />
-        <div className="main-container">
-          <SideBar />
-          <div className="user-link-container">
-            <div className="error-message">{error}</div>
-
-            <Link to="/user/12" className="user-link">
-              Karl
-            </Link>
-            <Link to="/user/18" className="user-link">
-              Cecilia
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
+  if (error || !data.userMainData) {
+    return <Error />;
   }
 
   return (

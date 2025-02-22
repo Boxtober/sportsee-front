@@ -5,6 +5,7 @@ import { getUserMainData, getUserPerformance } from "../../services/apiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RadarChartComponent from "../../components/radarChart/RadarChart";
+import Error from "../error/Error";
 
 const Performance = () => {
   const { id } = useParams();
@@ -13,9 +14,11 @@ const Performance = () => {
     userMainData: null,
     userPerformance: null,
   });
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPerformanceData = async () => {
+      setError(null);
       try {
         const userMainData = await getUserMainData(userId);
         const userPerformance = await getUserPerformance(userId);
@@ -26,11 +29,14 @@ const Performance = () => {
         });
       } catch (error) {
         console.error("pas de datas :( ");
+        setError("pas de datas :(");
       }
     };
     fetchPerformanceData();
   }, [userId]);
-
+  if (error || !data.userMainData) {
+    return <Error />;
+  }
   return (
     <div className="main">
       <div>

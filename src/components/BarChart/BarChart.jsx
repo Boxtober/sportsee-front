@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import "./barChart.scss";
+import { sessionDataFormatter } from "../../services/dataFormatter";
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
@@ -36,12 +37,7 @@ const BarChartComponent = ({ userData }) => {
     return null;
   }
 
-  const data = userData.sessions.map((session, index) => ({
-    day: index + 1,
-    kilogram: session.kilogram,
-    calories: session.calories,
-  }));
-
+  const data = sessionDataFormatter(userData);
   return (
     <ResponsiveContainer
       width="100%"
@@ -84,7 +80,7 @@ const BarChartComponent = ({ userData }) => {
 
         <YAxis
           domain={["dataMin - 10", "dataMax + 10"]} // arrondir au 10e sup / inf (mathfloor)
-          yAxisId="kilogram"
+          yAxisId="kilogram" //associé a la barre de poids (dataKey="kilogram")
           orientation="right"
           tick={{ fill: "#9B9EAC", fontSize: 14 }}
           axisLine={false} // masquer la ligne de l'axe Y à droite
@@ -93,9 +89,9 @@ const BarChartComponent = ({ userData }) => {
         />
 
         <YAxis
-          yAxisId="calories"
+          yAxisId="calories" //associé a la barre de calories (dataKey="calories").
           orientation="left"
-          tick={false}
+          tick={false} // pas d'affichage
           axisLine={false}
         />
 

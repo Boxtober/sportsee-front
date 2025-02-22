@@ -1,6 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import useResponsiveHeight from "../../utils/ResponsiveHeight";
+import { scoreDataFormatter } from "../../services/dataFormatter";
 
 const COLORS = ["#FF0000", "#FBFBFB"]; // score et restant
 
@@ -10,15 +11,7 @@ const PieChartComponent = ({ userData }) => {
     return;
   }
 
-  // recup "todayScore" ou "score"
-  const score = userData.todayScore || userData.score;
-
-  // structure des données
-  const data = [
-    { name: "Score", value: score },
-    { name: "Rest", value: 1 - score },
-  ];
-
+  const data = scoreDataFormatter(userData);
   return (
     <ResponsiveContainer
       width="100%"
@@ -87,7 +80,7 @@ const PieChartComponent = ({ userData }) => {
           textAnchor="middle"
           dominantBaseline="middle"
           style={{ fontSize: "26px", fontWeight: "bold" }}>
-          {`${(score * 100).toFixed(0)}%`}
+          {`${(data[0].value * 100).toFixed(0)}%`}
         </text>
 
         <text
